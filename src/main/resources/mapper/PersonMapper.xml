@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.PersonMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Person" >
+    <id column="pp_id" property="ppId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="pp_name" property="ppName" jdbcType="VARCHAR" />
+    <result column="pp_info" property="ppInfo" jdbcType="VARCHAR" />
+    <result column="doctor_domain" property="doctorDomain" jdbcType="VARCHAR" />
+    <result column="pp_state" property="ppState" jdbcType="VARCHAR" />
+    <result column="pp_time" property="ppTime" jdbcType="TIMESTAMP" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="professional_id" property="professionalId" jdbcType="VARCHAR" />
+    <result column="professional_name" property="professionalName" jdbcType="VARCHAR" />
+    <result column="doctor_pay" property="doctorPay" jdbcType="DOUBLE" />
+    <result column="pp_pic" property="ppPic" jdbcType="VARCHAR" />
+    <result column="standby" property="standby" jdbcType="VARCHAR" />
+    <result column="outcallcount" property="outCallCount"  />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pp_id, user_id, pp_name, pp_info, doctor_domain, pp_state, pp_time, 
+    department_id, department_name, professional_id, professional_name, doctor_pay, pp_pic, 
+    standby
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from person
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Person" >
+    insert into person (pp_id, user_id, pp_name, 
+      pp_info, doctor_domain, pp_state, 
+      pp_time, department_id, department_name, 
+      professional_id, professional_name, doctor_pay, 
+      pp_pic, standby
+      )
+    values (#{ppId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{ppName,jdbcType=VARCHAR}, 
+      #{ppInfo,jdbcType=VARCHAR}, #{doctorDomain,jdbcType=VARCHAR}, #{ppState,jdbcType=VARCHAR}, 
+      #{ppTime,jdbcType=TIMESTAMP}, #{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, 
+      #{professionalId,jdbcType=VARCHAR}, #{professionalName,jdbcType=VARCHAR}, #{doctorPay,jdbcType=DOUBLE}, 
+      #{ppPic,jdbcType=VARCHAR}, #{standby,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Person" >
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ppId != null" >
+        pp_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="ppName != null" >
+        pp_name,
+      </if>
+      <if test="ppInfo != null" >
+        pp_info,
+      </if>
+      <if test="doctorDomain != null" >
+        doctor_domain,
+      </if>
+      <if test="ppState != null" >
+        pp_state,
+      </if>
+      <if test="ppTime != null" >
+        pp_time,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="departmentName != null" >
+        department_name,
+      </if>
+      <if test="professionalId != null" >
+        professional_id,
+      </if>
+      <if test="professionalName != null" >
+        professional_name,
+      </if>
+      <if test="doctorPay != null" >
+        doctor_pay,
+      </if>
+      <if test="ppPic != null" >
+        pp_pic,
+      </if>
+      <if test="standby != null" >
+        standby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ppId != null" >
+        #{ppId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppName != null" >
+        #{ppName,jdbcType=VARCHAR},
+      </if>
+      <if test="ppInfo != null" >
+        #{ppInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorDomain != null" >
+        #{doctorDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="ppState != null" >
+        #{ppState,jdbcType=VARCHAR},
+      </if>
+      <if test="ppTime != null" >
+        #{ppTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalId != null" >
+        #{professionalId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorPay != null" >
+        #{doctorPay,jdbcType=DOUBLE},
+      </if>
+      <if test="ppPic != null" >
+        #{ppPic,jdbcType=VARCHAR},
+      </if>
+      <if test="standby != null" >
+        #{standby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Person" >
+    update person
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="ppName != null" >
+        pp_name = #{ppName,jdbcType=VARCHAR},
+      </if>
+      <if test="ppInfo != null" >
+        pp_info = #{ppInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorDomain != null" >
+        doctor_domain = #{doctorDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="ppState != null" >
+        pp_state = #{ppState,jdbcType=VARCHAR},
+      </if>
+      <if test="ppTime != null" >
+        pp_time = #{ppTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalId != null" >
+        professional_id = #{professionalId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        professional_name = #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorPay != null" >
+        doctor_pay = #{doctorPay,jdbcType=DOUBLE},
+      </if>
+      <if test="ppPic != null" >
+        pp_pic = #{ppPic,jdbcType=VARCHAR},
+      </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Person" >
+    update person
+    set user_id = #{userId,jdbcType=VARCHAR},
+      pp_name = #{ppName,jdbcType=VARCHAR},
+      pp_info = #{ppInfo,jdbcType=VARCHAR},
+      doctor_domain = #{doctorDomain,jdbcType=VARCHAR},
+      pp_state = #{ppState,jdbcType=VARCHAR},
+      pp_time = #{ppTime,jdbcType=TIMESTAMP},
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      professional_id = #{professionalId,jdbcType=VARCHAR},
+      professional_name = #{professionalName,jdbcType=VARCHAR},
+      doctor_pay = #{doctorPay,jdbcType=DOUBLE},
+      pp_pic = #{ppPic,jdbcType=VARCHAR},
+      standby = #{standby,jdbcType=VARCHAR}
+    where pp_id = #{ppId,jdbcType=VARCHAR}
+  </update>
+  
+  
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.IllnesspositionMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Illnessposition" >
+    <id column="illtp_id" property="illtpId" jdbcType="VARCHAR" />
+    <result column="illtp_name" property="illtpName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    illtp_id, illtp_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from illnessposition
+    where illtp_id = #{illtpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from illnessposition
+    where illtp_id = #{illtpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Illnessposition" >
+    insert into illnessposition (illtp_id, illtp_name)
+    values (#{illtpId,jdbcType=VARCHAR}, #{illtpName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Illnessposition" >
+    insert into illnessposition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="illtpId != null" >
+        illtp_id,
+      </if>
+      <if test="illtpName != null" >
+        illtp_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="illtpId != null" >
+        #{illtpId,jdbcType=VARCHAR},
+      </if>
+      <if test="illtpName != null" >
+        #{illtpName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Illnessposition" >
+    update illnessposition
+    <set >
+      <if test="illtpName != null" >
+        illtp_name = #{illtpName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where illtp_id = #{illtpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Illnessposition" >
+    update illnessposition
+    set illtp_name = #{illtpName,jdbcType=VARCHAR}
+    where illtp_id = #{illtpId,jdbcType=VARCHAR}
+  </update>
+</mapper>

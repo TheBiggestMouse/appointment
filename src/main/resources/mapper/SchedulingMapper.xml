@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.SchedulingMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Scheduling" >
+    <id column="scheduling_id" property="schedulingId" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="scheduling_date" property="schedulingDate" jdbcType="DATE" />
+    <result column="time1" property="time1" jdbcType="VARCHAR" />
+    <result column="time2" property="time2" jdbcType="VARCHAR" />
+    <result column="time3" property="time3" jdbcType="VARCHAR" />
+    <result column="time4" property="time4" jdbcType="VARCHAR" />
+    <result column="time5" property="time5" jdbcType="VARCHAR" />
+    <result column="time6" property="time6" jdbcType="VARCHAR" />
+    <result column="count1" property="count1" jdbcType="INTEGER" />
+    <result column="count2" property="count2" jdbcType="INTEGER" />
+    <result column="count3" property="count3" jdbcType="INTEGER" />
+    <result column="count4" property="count4" jdbcType="INTEGER" />
+    <result column="count5" property="count5" jdbcType="INTEGER" />
+    <result column="count6" property="count6" jdbcType="INTEGER" />
+    <result column="standby" property="standby" jdbcType="VARCHAR" />
+    <!-- 医生姓名 -->
+    <result column="pp_name" property="ppName" jdbcType="VARCHAR" />
+    <!-- 科室名称 -->
+    <result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 直接调用 使用 <include refid="Base_Column_List" /> -->
+  <sql id="Base_Column_List" >
+    scheduling_id, doctor_id, scheduling_date, time1, time2, time3, time4, time5, time6, 
+    count1, count2, count3, count4, count5, count6, standby
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from scheduling
+    where scheduling_id = #{schedulingId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from scheduling
+    where scheduling_id = #{schedulingId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Scheduling" >
+    insert into scheduling (scheduling_id, doctor_id, scheduling_date, 
+      time1, time2, time3, 
+      time4, time5, time6, 
+      count1, count2, count3, 
+      count4, count5, count6, 
+      standby)
+    values (#{schedulingId,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, #{schedulingDate,jdbcType=DATE}, 
+      #{time1,jdbcType=VARCHAR}, #{time2,jdbcType=VARCHAR}, #{time3,jdbcType=VARCHAR}, 
+      #{time4,jdbcType=VARCHAR}, #{time5,jdbcType=VARCHAR}, #{time6,jdbcType=VARCHAR}, 
+      #{count1,jdbcType=INTEGER}, #{count2,jdbcType=INTEGER}, #{count3,jdbcType=INTEGER}, 
+      #{count4,jdbcType=INTEGER}, #{count5,jdbcType=INTEGER}, #{count6,jdbcType=INTEGER}, 
+      #{standby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Scheduling" >
+    insert into scheduling
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schedulingId != null" >
+        scheduling_id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="schedulingDate != null" >
+        scheduling_date,
+      </if>
+      <if test="time1 != null" >
+        time1,
+      </if>
+      <if test="time2 != null" >
+        time2,
+      </if>
+      <if test="time3 != null" >
+        time3,
+      </if>
+      <if test="time4 != null" >
+        time4,
+      </if>
+      <if test="time5 != null" >
+        time5,
+      </if>
+      <if test="time6 != null" >
+        time6,
+      </if>
+      <if test="count1 != null" >
+        count1,
+      </if>
+      <if test="count2 != null" >
+        count2,
+      </if>
+      <if test="count3 != null" >
+        count3,
+      </if>
+      <if test="count4 != null" >
+        count4,
+      </if>
+      <if test="count5 != null" >
+        count5,
+      </if>
+      <if test="count6 != null" >
+        count6,
+      </if>
+      <if test="standby != null" >
+        standby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schedulingId != null" >
+        #{schedulingId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulingDate != null" >
+        #{schedulingDate,jdbcType=DATE},
+      </if>
+      <if test="time1 != null" >
+        #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        #{time2,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        #{time3,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        #{time4,jdbcType=VARCHAR},
+      </if>
+      <if test="time5 != null" >
+        #{time5,jdbcType=VARCHAR},
+      </if>
+      <if test="time6 != null" >
+        #{time6,jdbcType=VARCHAR},
+      </if>
+      <if test="count1 != null" >
+        #{count1,jdbcType=INTEGER},
+      </if>
+      <if test="count2 != null" >
+        #{count2,jdbcType=INTEGER},
+      </if>
+      <if test="count3 != null" >
+        #{count3,jdbcType=INTEGER},
+      </if>
+      <if test="count4 != null" >
+        #{count4,jdbcType=INTEGER},
+      </if>
+      <if test="count5 != null" >
+        #{count5,jdbcType=INTEGER},
+      </if>
+      <if test="count6 != null" >
+        #{count6,jdbcType=INTEGER},
+      </if>
+      <if test="standby != null" >
+        #{standby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Scheduling" >
+    update scheduling
+    <set >
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="schedulingDate != null" >
+        scheduling_date = #{schedulingDate,jdbcType=DATE},
+      </if>
+      <if test="time1 != null" >
+        time1 = #{time1,jdbcType=VARCHAR},
+      </if>
+      <if test="time2 != null" >
+        time2 = #{time2,jdbcType=VARCHAR},
+      </if>
+      <if test="time3 != null" >
+        time3 = #{time3,jdbcType=VARCHAR},
+      </if>
+      <if test="time4 != null" >
+        time4 = #{time4,jdbcType=VARCHAR},
+      </if>
+      <if test="time5 != null" >
+        time5 = #{time5,jdbcType=VARCHAR},
+      </if>
+      <if test="time6 != null" >
+        time6 = #{time6,jdbcType=VARCHAR},
+      </if>
+      <if test="count1 != null" >
+        count1 = #{count1,jdbcType=INTEGER},
+      </if>
+      <if test="count2 != null" >
+        count2 = #{count2,jdbcType=INTEGER},
+      </if>
+      <if test="count3 != null" >
+        count3 = #{count3,jdbcType=INTEGER},
+      </if>
+      <if test="count4 != null" >
+        count4 = #{count4,jdbcType=INTEGER},
+      </if>
+      <if test="count5 != null" >
+        count5 = #{count5,jdbcType=INTEGER},
+      </if>
+      <if test="count6 != null" >
+        count6 = #{count6,jdbcType=INTEGER},
+      </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scheduling_id = #{schedulingId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Scheduling" >
+    update scheduling
+    set doctor_id = #{doctorId,jdbcType=VARCHAR},
+      scheduling_date = #{schedulingDate,jdbcType=DATE},
+      time1 = #{time1,jdbcType=VARCHAR},
+      time2 = #{time2,jdbcType=VARCHAR},
+      time3 = #{time3,jdbcType=VARCHAR},
+      time4 = #{time4,jdbcType=VARCHAR},
+      time5 = #{time5,jdbcType=VARCHAR},
+      time6 = #{time6,jdbcType=VARCHAR},
+      count1 = #{count1,jdbcType=INTEGER},
+      count2 = #{count2,jdbcType=INTEGER},
+      count3 = #{count3,jdbcType=INTEGER},
+      count4 = #{count4,jdbcType=INTEGER},
+      count5 = #{count5,jdbcType=INTEGER},
+      count6 = #{count6,jdbcType=INTEGER},
+      standby = #{standby,jdbcType=VARCHAR}
+    where scheduling_id = #{schedulingId,jdbcType=VARCHAR}
+  </update>
+  	<!-- 查询所有排班信息 -->
+  <select id="queryAllFutureInfo" parameterType="string"  resultMap="BaseResultMap" >
+     select 
+    <include refid="Base_Column_List" />
+    from scheduling
+    where  doctor_id= #{doctorId}
+  </select>
+  <!-- 
+  	作者: 郎国峰
+  	时间: 2017年11月10日14:15:22
+  	描述: 医生排班表的动态sql查询
+   -->
+  <select id="listScheduling" resultMap="BaseResultMap" parameterType="com.yunzhong.appointment.util.PageData">
+  	SELECT scheduling.scheduling_id,scheduling.doctor_id,scheduling.scheduling_date,scheduling.time1,scheduling.time2,scheduling.time3,
+		   scheduling.time4,scheduling.time5,scheduling.time6,scheduling.count1,scheduling.count2,scheduling.count3,scheduling.count4,
+		   scheduling.count5,scheduling.count6,scheduling.standby,person.pp_name,person.department_name
+	FROM   scheduling left join person on scheduling.doctor_id = person.pp_id
+	<where>
+		<if test="ppName!=null and ppName!=''">
+			and person.pp_name = #{ppName}
+		</if>
+		<if test="departmentName!=null and departmentName!=''">
+			and person.department_name = #{departmentName} 
+		</if>
+		<if test="schedulingDate!=null and schedulingDate!=''">
+			and DATE_FORMAT(scheduling.scheduling_date,'%Y-%m-%d') = #{schedulingDate}
+		</if>
+	</where>
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

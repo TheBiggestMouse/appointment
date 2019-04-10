@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.DoctorIllnessMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.DoctorIllness" >
+    <id column="docill_id" property="docillId" jdbcType="VARCHAR" />
+    <result column="ill_id" property="illId" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    docill_id, ill_id, doctor_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from doctor_illness
+    where docill_id = #{docillId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from doctor_illness
+    where docill_id = #{docillId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.DoctorIllness" >
+    insert into doctor_illness (docill_id, ill_id, doctor_id
+      )
+    values (#{docillId,jdbcType=VARCHAR}, #{illId,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.DoctorIllness" >
+    insert into doctor_illness
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="docillId != null" >
+        docill_id,
+      </if>
+      <if test="illId != null" >
+        ill_id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="docillId != null" >
+        #{docillId,jdbcType=VARCHAR},
+      </if>
+      <if test="illId != null" >
+        #{illId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.DoctorIllness" >
+    update doctor_illness
+    <set >
+      <if test="illId != null" >
+        ill_id = #{illId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where docill_id = #{docillId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.DoctorIllness" >
+    update doctor_illness
+    set ill_id = #{illId,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=VARCHAR}
+    where docill_id = #{docillId,jdbcType=VARCHAR}
+  </update>
+</mapper>

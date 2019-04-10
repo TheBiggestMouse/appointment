@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.SysRole" >
+    <id column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_state" property="roleState" jdbcType="VARCHAR" />
+    <result column="role_info" property="roleInfo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_id, role_name, role_state, role_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_role
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.SysRole" >
+    insert into sys_role (role_id, role_name, role_state, 
+      role_info)
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleState,jdbcType=VARCHAR}, 
+      #{roleInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.SysRole" >
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleState != null" >
+        role_state,
+      </if>
+      <if test="roleInfo != null" >
+        role_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleState != null" >
+        #{roleState,jdbcType=VARCHAR},
+      </if>
+      <if test="roleInfo != null" >
+        #{roleInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.SysRole" >
+    update sys_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleState != null" >
+        role_state = #{roleState,jdbcType=VARCHAR},
+      </if>
+      <if test="roleInfo != null" >
+        role_info = #{roleInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.SysRole" >
+    update sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_state = #{roleState,jdbcType=VARCHAR},
+      role_info = #{roleInfo,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=VARCHAR}
+  </update>
+  
+  <!--   查寻所有 角色   与   条件查询-->
+  <select id="listrole" parameterType="com.yunzhong.appointment.util.PageData" resultMap="BaseResultMap">
+  	select role_id , role_name ,role_state ,role_info  from sys_role
+  	<where>
+  		<if test="roleName!=null">
+  			and role_name like concat('%',concat(#{roleName},'%'))
+  		</if>
+  	</where> 
+  </select>
+  
+</mapper>

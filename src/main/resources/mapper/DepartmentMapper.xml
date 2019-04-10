@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Department" >
+    <id column="dp_id" property="dpId" jdbcType="VARCHAR" />
+    <result column="dpl_id" property="dplId" jdbcType="VARCHAR" />
+    <result column="dp_name" property="dpName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dp_id, dpl_id, dp_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from department
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Department" >
+    insert into department (dp_id, dpl_id, dp_name
+      )
+    values (#{dpId,jdbcType=VARCHAR}, #{dplId,jdbcType=VARCHAR}, #{dpName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="dplId != null" >
+        dpl_id,
+      </if>
+      <if test="dpName != null" >
+        dp_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dpId != null" >
+        #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="dplId != null" >
+        #{dplId,jdbcType=VARCHAR},
+      </if>
+      <if test="dpName != null" >
+        #{dpName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Department" >
+    update department
+    <set >
+      <if test="dplId != null" >
+        dpl_id = #{dplId,jdbcType=VARCHAR},
+      </if>
+      <if test="dpName != null" >
+        dp_name = #{dpName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Department" >
+    update department
+    set dpl_id = #{dplId,jdbcType=VARCHAR},
+      dp_name = #{dpName,jdbcType=VARCHAR}
+    where dp_id = #{dpId,jdbcType=VARCHAR}
+  </update>
+</mapper>

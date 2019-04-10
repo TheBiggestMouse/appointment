@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.SysMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.SysMenu" >
+    <id column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="sys_menu_id" property="sysMenuId" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_islink" property="menuIslink" jdbcType="VARCHAR" />
+    <result column="menu_sequ" property="menuSequ" jdbcType="VARCHAR" />
+    <result column="menu_state" property="menuState" jdbcType="VARCHAR" />
+    <result column="menu_info" property="menuInfo" jdbcType="VARCHAR" />
+    <result column="par_name" property="parMenuName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    menu_id, sys_menu_id, menu_name, menu_url, menu_islink, menu_sequ, menu_state, menu_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.SysMenu" >
+    insert into sys_menu (menu_id, sys_menu_id, menu_name, 
+      menu_url, menu_islink, menu_sequ, 
+      menu_state, menu_info)
+    values (#{menuId,jdbcType=VARCHAR}, #{sysMenuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{menuUrl,jdbcType=VARCHAR}, #{menuIslink,jdbcType=VARCHAR}, #{menuSequ,jdbcType=VARCHAR}, 
+      #{menuState,jdbcType=VARCHAR}, #{menuInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.SysMenu" >
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="sysMenuId != null" >
+        sys_menu_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="menuIslink != null" >
+        menu_islink,
+      </if>
+      <if test="menuSequ != null" >
+        menu_sequ,
+      </if>
+      <if test="menuState != null" >
+        menu_state,
+      </if>
+      <if test="menuInfo != null" >
+        menu_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="sysMenuId != null" >
+        #{sysMenuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIslink != null" >
+        #{menuIslink,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSequ != null" >
+        #{menuSequ,jdbcType=VARCHAR},
+      </if>
+      <if test="menuState != null" >
+        #{menuState,jdbcType=VARCHAR},
+      </if>
+      <if test="menuInfo != null" >
+        #{menuInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.SysMenu" >
+    update sys_menu
+    <set >
+      <if test="sysMenuId != null" >
+        sys_menu_id = #{sysMenuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIslink != null" >
+        menu_islink = #{menuIslink,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSequ != null" >
+        menu_sequ = #{menuSequ,jdbcType=VARCHAR},
+      </if>
+      <if test="menuState != null" >
+        menu_state = #{menuState,jdbcType=VARCHAR},
+      </if>
+      <if test="menuInfo != null" >
+        menu_info = #{menuInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.SysMenu" >
+    update sys_menu
+    set sys_menu_id = #{sysMenuId,jdbcType=VARCHAR},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_islink = #{menuIslink,jdbcType=VARCHAR},
+      menu_sequ = #{menuSequ,jdbcType=VARCHAR},
+      menu_state = #{menuState,jdbcType=VARCHAR},
+      menu_info = #{menuInfo,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

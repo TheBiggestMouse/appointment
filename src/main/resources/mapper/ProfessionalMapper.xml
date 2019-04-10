@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.ProfessionalMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Professional" >
+    <id column="professional_id" property="professionalId" jdbcType="VARCHAR" />
+    <result column="dp_id" property="dpId" jdbcType="VARCHAR" />
+    <result column="professional_name" property="professionalName" jdbcType="VARCHAR" />
+    <result column="professional_fee" property="professionalFee" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    professional_id, dp_id, professional_name, professional_fee
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from professional
+    where professional_id = #{professionalId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from professional
+    where professional_id = #{professionalId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Professional" >
+    insert into professional (professional_id, dp_id, professional_name, 
+      professional_fee)
+    values (#{professionalId,jdbcType=VARCHAR}, #{dpId,jdbcType=VARCHAR}, #{professionalName,jdbcType=VARCHAR}, 
+      #{professionalFee,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Professional" >
+    insert into professional
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="professionalId != null" >
+        professional_id,
+      </if>
+      <if test="dpId != null" >
+        dp_id,
+      </if>
+      <if test="professionalName != null" >
+        professional_name,
+      </if>
+      <if test="professionalFee != null" >
+        professional_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="professionalId != null" >
+        #{professionalId,jdbcType=VARCHAR},
+      </if>
+      <if test="dpId != null" >
+        #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalFee != null" >
+        #{professionalFee,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Professional" >
+    update professional
+    <set >
+      <if test="dpId != null" >
+        dp_id = #{dpId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        professional_name = #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalFee != null" >
+        professional_fee = #{professionalFee,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where professional_id = #{professionalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Professional" >
+    update professional
+    set dp_id = #{dpId,jdbcType=VARCHAR},
+      professional_name = #{professionalName,jdbcType=VARCHAR},
+      professional_fee = #{professionalFee,jdbcType=DOUBLE}
+    where professional_id = #{professionalId,jdbcType=VARCHAR}
+  </update>
+</mapper>

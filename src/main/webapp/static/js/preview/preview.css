@@ -1,0 +1,7 @@
+#preview{
+	width: 75px;
+	height: 100px;
+	display: block;
+	background-color: gray;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+}

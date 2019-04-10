@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.VisitsettimeMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Visitsettime" >
+    <id column="visitst_id" property="visitstId" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="visit_plan" property="visitPlan" jdbcType="VARCHAR" />
+    <result column="visit_moncount" property="visitMoncount" jdbcType="VARCHAR" />
+    <result column="visit_tuescount" property="visitTuescount" jdbcType="VARCHAR" />
+    <result column="visit_wedcount" property="visitWedcount" jdbcType="VARCHAR" />
+    <result column="visit_thurcount" property="visitThurcount" jdbcType="VARCHAR" />
+    <result column="visit_fricount" property="visitFricount" jdbcType="VARCHAR" />
+    <result column="visit_satcount" property="visitSatcount" jdbcType="VARCHAR" />
+    <result column="visit_suncount" property="visitSuncount" jdbcType="VARCHAR" />
+    <result column="visit_time" property="visitTime" jdbcType="TIMESTAMP" />
+    <result column="standby" property="standby" jdbcType="VARCHAR" />
+    <!-- 人员姓名 -->
+    <result column="pp_name" property="ppName" jdbcType="VARCHAR" />
+    <!-- 科室id -->
+    <result column="departmen_id" property="departmentId" jdbcType="VARCHAR" />
+    <!-- 科室name -->
+    <result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    visitst_id, doctor_id, visit_plan, visit_moncount, visit_tuescount, visit_wedcount, 
+    visit_thurcount, visit_fricount, visit_satcount, visit_suncount, visit_time, standby
+  </sql>
+  
+  <!-- 查询医生自动排班信息 -->
+  <select id="queryScheduByDocId"  resultMap="BaseResultMap" parameterType="string">
+     select 
+    <include refid="Base_Column_List" />
+    from visitsettime
+    where doctor_id=#{id}
+  </select>
+  
+  <!-- 所有医生排班信息 -->
+  <select id="listVisittime"  resultMap="BaseResultMap"  >
+      select 
+    <include refid="Base_Column_List" />
+    from visitsettime
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from visitsettime
+    where visitst_id = #{visitstId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from visitsettime
+    where visitst_id = #{visitstId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Visitsettime" >
+    insert into visitsettime (visitst_id, doctor_id, visit_plan, 
+      visit_moncount, visit_tuescount, visit_wedcount, 
+      visit_thurcount, visit_fricount, visit_satcount, 
+      visit_suncount, visit_time, standby
+      )
+    values (#{visitstId,jdbcType=VARCHAR}, #{doctorId,jdbcType=VARCHAR}, #{visitPlan,jdbcType=VARCHAR}, 
+      #{visitMoncount,jdbcType=VARCHAR}, #{visitTuescount,jdbcType=VARCHAR}, #{visitWedcount,jdbcType=VARCHAR}, 
+      #{visitThurcount,jdbcType=VARCHAR}, #{visitFricount,jdbcType=VARCHAR}, #{visitSatcount,jdbcType=VARCHAR}, 
+      #{visitSuncount,jdbcType=VARCHAR}, #{visitTime,jdbcType=TIMESTAMP}, #{standby,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Visitsettime" >
+    insert into visitsettime
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitstId != null" >
+        visitst_id,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="visitPlan != null" >
+        visit_plan,
+      </if>
+      <if test="visitMoncount != null" >
+        visit_moncount,
+      </if>
+      <if test="visitTuescount != null" >
+        visit_tuescount,
+      </if>
+      <if test="visitWedcount != null" >
+        visit_wedcount,
+      </if>
+      <if test="visitThurcount != null" >
+        visit_thurcount,
+      </if>
+      <if test="visitFricount != null" >
+        visit_fricount,
+      </if>
+      <if test="visitSatcount != null" >
+        visit_satcount,
+      </if>
+      <if test="visitSuncount != null" >
+        visit_suncount,
+      </if>
+      <if test="visitTime != null" >
+        visit_time,
+      </if>
+      <if test="standby != null" >
+        standby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitstId != null" >
+        #{visitstId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitPlan != null" >
+        #{visitPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="visitMoncount != null" >
+        #{visitMoncount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTuescount != null" >
+        #{visitTuescount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitWedcount != null" >
+        #{visitWedcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitThurcount != null" >
+        #{visitThurcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitFricount != null" >
+        #{visitFricount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitSatcount != null" >
+        #{visitSatcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitSuncount != null" >
+        #{visitSuncount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTime != null" >
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="standby != null" >
+        #{standby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Visitsettime" >
+    update visitsettime
+    <set >
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitPlan != null" >
+        visit_plan = #{visitPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="visitMoncount != null" >
+        visit_moncount = #{visitMoncount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTuescount != null" >
+        visit_tuescount = #{visitTuescount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitWedcount != null" >
+        visit_wedcount = #{visitWedcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitThurcount != null" >
+        visit_thurcount = #{visitThurcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitFricount != null" >
+        visit_fricount = #{visitFricount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitSatcount != null" >
+        visit_satcount = #{visitSatcount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitSuncount != null" >
+        visit_suncount = #{visitSuncount,jdbcType=VARCHAR},
+      </if>
+      <if test="visitTime != null" >
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where visitst_id = #{visitstId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Visitsettime" >
+    update visitsettime
+    set doctor_id = #{doctorId,jdbcType=VARCHAR},
+      visit_plan = #{visitPlan,jdbcType=VARCHAR},
+      visit_moncount = #{visitMoncount,jdbcType=VARCHAR},
+      visit_tuescount = #{visitTuescount,jdbcType=VARCHAR},
+      visit_wedcount = #{visitWedcount,jdbcType=VARCHAR},
+      visit_thurcount = #{visitThurcount,jdbcType=VARCHAR},
+      visit_fricount = #{visitFricount,jdbcType=VARCHAR},
+      visit_satcount = #{visitSatcount,jdbcType=VARCHAR},
+      visit_suncount = #{visitSuncount,jdbcType=VARCHAR},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      standby = #{standby,jdbcType=VARCHAR}
+    where visitst_id = #{visitstId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="com.yunzhong.appointment.entity.Visitsettime">
+  	SELECT
+	visitsettime.visitst_id,
+	visitsettime.doctor_id,
+	visitsettime.visit_plan,
+	visitsettime.visit_moncount,
+	visitsettime.visit_tuescount,
+	visitsettime.visit_wedcount,
+	visitsettime.visit_thurcount,
+	visitsettime.visit_fricount,
+	visitsettime.visit_satcount,
+	visitsettime.visit_suncount,
+	visitsettime.visit_time,
+	visitsettime.standby,
+	person.pp_name,
+	person.department_name
+	FROM 
+	visitsettime
+	left join person on person.pp_id = visitsettime.doctor_id
+	<where>
+		<if test="ppName != null and ppName != ''">
+			and person.pp_name = #{ppName}
+		</if>
+		<if test="departmentId != null and departmentId != '' ">
+			and person.department_id = #{departmentId}
+		</if>
+	</where>
+  </select>
+  
+  
+  
+</mapper>

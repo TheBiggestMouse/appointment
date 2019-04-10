@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.HostipalMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Hostipal" >
+    <id column="hostipal_id" property="hostipalId" jdbcType="VARCHAR" />
+    <result column="hostipal_name" property="hostipalName" jdbcType="VARCHAR" />
+    <result column="hostipal_info" property="hostipalInfo" jdbcType="VARCHAR" />
+    <result column="hostipal_pic" property="hostipalPic" jdbcType="VARCHAR" />
+    <result column="hostipal_addresspic" property="hostipalAddresspic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hostipal_id, hostipal_name, hostipal_info, hostipal_pic, hostipal_addresspic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from hostipal
+    where hostipal_id = #{hostipalId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from hostipal
+    where hostipal_id = #{hostipalId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Hostipal" >
+    insert into hostipal (hostipal_id, hostipal_name, hostipal_info, 
+      hostipal_pic, hostipal_addresspic)
+    values (#{hostipalId,jdbcType=VARCHAR}, #{hostipalName,jdbcType=VARCHAR}, #{hostipalInfo,jdbcType=VARCHAR}, 
+      #{hostipalPic,jdbcType=VARCHAR}, #{hostipalAddresspic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Hostipal" >
+    insert into hostipal
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hostipalId != null" >
+        hostipal_id,
+      </if>
+      <if test="hostipalName != null" >
+        hostipal_name,
+      </if>
+      <if test="hostipalInfo != null" >
+        hostipal_info,
+      </if>
+      <if test="hostipalPic != null" >
+        hostipal_pic,
+      </if>
+      <if test="hostipalAddresspic != null" >
+        hostipal_addresspic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hostipalId != null" >
+        #{hostipalId,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalName != null" >
+        #{hostipalName,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalInfo != null" >
+        #{hostipalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalPic != null" >
+        #{hostipalPic,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalAddresspic != null" >
+        #{hostipalAddresspic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Hostipal" >
+    update hostipal
+    <set >
+      <if test="hostipalName != null" >
+        hostipal_name = #{hostipalName,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalInfo != null" >
+        hostipal_info = #{hostipalInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalPic != null" >
+        hostipal_pic = #{hostipalPic,jdbcType=VARCHAR},
+      </if>
+      <if test="hostipalAddresspic != null" >
+        hostipal_addresspic = #{hostipalAddresspic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hostipal_id = #{hostipalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Hostipal" >
+    update hostipal
+    set hostipal_name = #{hostipalName,jdbcType=VARCHAR},
+      hostipal_info = #{hostipalInfo,jdbcType=VARCHAR},
+      hostipal_pic = #{hostipalPic,jdbcType=VARCHAR},
+      hostipal_addresspic = #{hostipalAddresspic,jdbcType=VARCHAR}
+    where hostipal_id = #{hostipalId,jdbcType=VARCHAR}
+  </update>
+</mapper>

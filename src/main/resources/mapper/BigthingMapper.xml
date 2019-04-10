@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.BigthingMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Bigthing" >
+    <id column="bigthing_id" property="bigthingId" jdbcType="VARCHAR" />
+    <result column="bigthing_time" property="bigthingTime" jdbcType="TIMESTAMP" />
+    <result column="bigthing_title" property="bigthingTitle" jdbcType="VARCHAR" />
+    <result column="bigthing_content" property="bigthingContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bigthing_id, bigthing_time, bigthing_title, bigthing_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bigthing
+    where bigthing_id = #{bigthingId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bigthing
+    where bigthing_id = #{bigthingId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Bigthing" >
+    insert into bigthing (bigthing_id, bigthing_time, bigthing_title, 
+      bigthing_content)
+    values (#{bigthingId,jdbcType=VARCHAR}, #{bigthingTime,jdbcType=TIMESTAMP}, #{bigthingTitle,jdbcType=VARCHAR}, 
+      #{bigthingContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Bigthing" >
+    insert into bigthing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bigthingId != null" >
+        bigthing_id,
+      </if>
+      <if test="bigthingTime != null" >
+        bigthing_time,
+      </if>
+      <if test="bigthingTitle != null" >
+        bigthing_title,
+      </if>
+      <if test="bigthingContent != null" >
+        bigthing_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bigthingId != null" >
+        #{bigthingId,jdbcType=VARCHAR},
+      </if>
+      <if test="bigthingTime != null" >
+        #{bigthingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bigthingTitle != null" >
+        #{bigthingTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bigthingContent != null" >
+        #{bigthingContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Bigthing" >
+    update bigthing
+    <set >
+      <if test="bigthingTime != null" >
+        bigthing_time = #{bigthingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bigthingTitle != null" >
+        bigthing_title = #{bigthingTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bigthingContent != null" >
+        bigthing_content = #{bigthingContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bigthing_id = #{bigthingId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Bigthing" >
+    update bigthing
+    set bigthing_time = #{bigthingTime,jdbcType=TIMESTAMP},
+      bigthing_title = #{bigthingTitle,jdbcType=VARCHAR},
+      bigthing_content = #{bigthingContent,jdbcType=VARCHAR}
+    where bigthing_id = #{bigthingId,jdbcType=VARCHAR}
+  </update>
+</mapper>

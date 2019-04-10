@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.AppointmentorderMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Appointmentorder" >
+    <id column="appointment_id" property="appointmentId" jdbcType="VARCHAR" />
+    <result column="appointment_time" property="appointmentTime" jdbcType="TIMESTAMP" />
+    <result column="order_state" property="orderState" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="paytype_orderid" property="paytypeOrderid" jdbcType="VARCHAR" />
+    <result column="patient_id" property="patientId" jdbcType="VARCHAR" />
+    <result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+    <result column="doctor_id" property="doctorId" jdbcType="VARCHAR" />
+    <result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+    <result column="professional_id" property="professionalId" jdbcType="VARCHAR" />
+    <result column="professional_name" property="professionalName" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="department_name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="illness_id" property="illnessId" jdbcType="VARCHAR" />
+    <result column="illness_name" property="illnessName" jdbcType="VARCHAR" />
+    <result column="appointment_date" property="appointmentDate" jdbcType="TIMESTAMP" />
+    <result column="registeredfee" property="registeredfee" jdbcType="DOUBLE" />
+    <result column="standby" property="standby" jdbcType="VARCHAR" />
+    <result column="countmnn" property="countmnn" jdbcType="VARCHAR" />
+    <result column="mn" property="mn" jdbcType="VARCHAR" />
+    <result column="yycs" property="yycs" jdbcType="VARCHAR" />
+    <result column="nian" property="nian" jdbcType="VARCHAR" />
+    <result column="docTimescount" property="docTimesCount" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    appointment_id, appointment_time,  order_state, pay_type, paytype_orderid, 
+    patient_id, patient_name, doctor_id, doctor_name, professional_id, professional_name, 
+    department_id, department_name, illness_id, illness_name, appointment_date, 
+    registeredfee, standby
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from appointmentorder
+    where appointment_id = #{appointmentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from appointmentorder
+    where appointment_id = #{appointmentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Appointmentorder" >
+    insert into appointmentorder (appointment_id, appointment_time, 
+       order_state, pay_type, 
+      paytype_orderid, patient_id, patient_name, 
+      doctor_id, doctor_name, professional_id, 
+      professional_name, department_id, department_name, 
+      illness_id, illness_name, appointment_date, 
+       registeredfee, standby
+      )
+    values (#{appointmentId,jdbcType=VARCHAR}, #{appointmentTime,jdbcType=TIMESTAMP}, 
+      #{orderState,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{paytypeOrderid,jdbcType=VARCHAR}, #{patientId,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
+      #{doctorId,jdbcType=VARCHAR}, #{doctorName,jdbcType=VARCHAR}, #{professionalId,jdbcType=VARCHAR}, 
+      #{professionalName,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{departmentName,jdbcType=VARCHAR}, 
+      #{illnessId,jdbcType=VARCHAR}, #{illnessName,jdbcType=VARCHAR}, #{appointmentDate,jdbcType=TIMESTAMP}, 
+       #{registeredfee,jdbcType=DOUBLE}, #{standby,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Appointmentorder" >
+    insert into appointmentorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appointmentId != null" >
+        appointment_id,
+      </if>
+      <if test="appointmentTime != null" >
+        appointment_time,
+      </if>
+     
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="paytypeOrderid != null" >
+        paytype_orderid,
+      </if>
+      <if test="patientId != null" >
+        patient_id,
+      </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+      <if test="doctorId != null" >
+        doctor_id,
+      </if>
+      <if test="doctorName != null" >
+        doctor_name,
+      </if>
+      <if test="professionalId != null" >
+        professional_id,
+      </if>
+      <if test="professionalName != null" >
+        professional_name,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="departmentName != null" >
+        department_name,
+      </if>
+      <if test="illnessId != null" >
+        illness_id,
+      </if>
+      <if test="illnessName != null" >
+        illness_name,
+      </if>
+      <if test="appointmentDate != null" >
+        appointment_date,
+      </if>
+      
+      <if test="registeredfee != null" >
+        registeredfee,
+      </if>
+      <if test="standby != null" >
+        standby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appointmentId != null" >
+        #{appointmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentTime != null" >
+        #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+     
+      <if test="orderState != null" >
+        #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="paytypeOrderid != null" >
+        #{paytypeOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalId != null" >
+        #{professionalId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessId != null" >
+        #{illnessId,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessName != null" >
+        #{illnessName,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentDate != null" >
+        #{appointmentDate,jdbcType=TIMESTAMP},
+      </if>
+     
+      <if test="registeredfee != null" >
+        #{registeredfee,jdbcType=DOUBLE},
+      </if>
+      <if test="standby != null" >
+        #{standby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Appointmentorder" >
+    update appointmentorder
+    <set >
+      <if test="appointmentTime != null" >
+        appointment_time = #{appointmentTime,jdbcType=TIMESTAMP},
+      </if>
+     
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="paytypeOrderid != null" >
+        paytype_orderid = #{paytypeOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="patientId != null" >
+        patient_id = #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorId != null" >
+        doctor_id = #{doctorId,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null" >
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalId != null" >
+        professional_id = #{professionalId,jdbcType=VARCHAR},
+      </if>
+      <if test="professionalName != null" >
+        professional_name = #{professionalName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null" >
+        department_name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessId != null" >
+        illness_id = #{illnessId,jdbcType=VARCHAR},
+      </if>
+      <if test="illnessName != null" >
+        illness_name = #{illnessName,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentDate != null" >
+        appointment_date = #{appointmentDate,jdbcType=TIMESTAMP},
+      </if>
+      
+      <if test="registeredfee != null" >
+        registeredfee = #{registeredfee,jdbcType=DOUBLE},
+      </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where appointment_id = #{appointmentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Appointmentorder" >
+    update appointmentorder
+    set appointment_time = #{appointmentTime,jdbcType=TIMESTAMP},
+      order_state = #{orderState,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      paytype_orderid = #{paytypeOrderid,jdbcType=VARCHAR},
+      patient_id = #{patientId,jdbcType=VARCHAR},
+      patient_name = #{patientName,jdbcType=VARCHAR},
+      doctor_id = #{doctorId,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      professional_id = #{professionalId,jdbcType=VARCHAR},
+      professional_name = #{professionalName,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      illness_id = #{illnessId,jdbcType=VARCHAR},
+      illness_name = #{illnessName,jdbcType=VARCHAR},
+      appointment_date = #{appointmentDate,jdbcType=TIMESTAMP},
+      
+      registeredfee = #{registeredfee,jdbcType=DOUBLE},
+      standby = #{standby,jdbcType=VARCHAR}
+    where appointment_id = #{appointmentId,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

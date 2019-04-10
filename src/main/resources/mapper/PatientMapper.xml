@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yunzhong.appointment.mapper.PatientMapper" >
+  <resultMap id="BaseResultMap" type="com.yunzhong.appointment.entity.Patient" >
+    <id column="patient_id" property="patientId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+    <result column="patient_tel" property="patientTel" jdbcType="VARCHAR" />
+    <result column="patient_sex" property="patientSex" jdbcType="VARCHAR" />
+    <result column="patient_uid" property="patientUid" jdbcType="VARCHAR" />
+    <result column="patient_birth" property="patientBirth" jdbcType="DATE" />
+    <result column="province_id" property="provinceId" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="patient_time" property="patientTime" jdbcType="TIMESTAMP" />
+    <result column="standby" property="standby" jdbcType="VARCHAR" />
+    <result column="patient_pic" property="patientPic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    patient_id, user_id, user_name, patient_name, patient_tel, patient_sex, patient_uid, 
+    patient_birth, province_id, province_name, city_id, city_name, area_id, area_name, 
+    patient_time, standby ,patient_pic
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where patient_id = #{patientId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from patient
+    where patient_id = #{patientId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yunzhong.appointment.entity.Patient" >
+    insert into patient (patient_id, user_id, user_name, patient_name, 
+      patient_tel, patient_sex, 
+      patient_uid, patient_birth, province_id, 
+      province_name, city_id, city_name, 
+      area_id, area_name, patient_time, 
+      standby)
+    values (#{patientId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{patientName,jdbcType=VARCHAR}, 
+      #{patientTel,jdbcType=VARCHAR}, #{patientSex,jdbcType=VARCHAR}, 
+      #{patientUid,jdbcType=VARCHAR}, #{patientBirth,jdbcType=DATE}, #{provinceId,jdbcType=VARCHAR}, 
+      #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{patientTime,jdbcType=TIMESTAMP}, 
+      #{standby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunzhong.appointment.entity.Patient" >
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        patient_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="patientName != null" >
+        patient_name,
+      </if>
+    <!--   <if test="patientTel != null" >
+        patient_tel,
+      </if> -->
+      <if test="patientSex != null" >
+        patient_sex,
+      </if>
+  <!--     <if test="patientUid != null" >
+        patient_uid,
+      </if> -->
+      <if test="patientBirth != null" >
+        patient_birth,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="patientTime != null" >
+        patient_time,
+      </if>
+      <if test="standby != null" >
+        standby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientId != null" >
+        #{patientId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTel != null" >
+        #{patientTel,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null" >
+        #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientUid != null" >
+        #{patientUid,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBirth != null" >
+        #{patientBirth,jdbcType=DATE},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTime != null" >
+        #{patientTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="standby != null" >
+        #{standby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yunzhong.appointment.entity.Patient" >
+    update patient
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTel != null" >
+        patient_tel = #{patientTel,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null" >
+        patient_sex = #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientUid != null" >
+        patient_uid = #{patientUid,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBirth != null" >
+        patient_birth = #{patientBirth,jdbcType=DATE},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTime != null" >
+        patient_time = #{patientTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="patientPic != null" >
+        patient_pic = #{patientPic,jdbcType=VARCHAR},
+      </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where patient_id = #{patientId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.yunzhong.appointment.entity.Patient" >
+    update patient
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      patient_name = #{patientName,jdbcType=VARCHAR},
+      patient_tel = #{patientTel,jdbcType=VARCHAR},
+      patient_sex = #{patientSex,jdbcType=VARCHAR},
+      patient_uid = #{patientUid,jdbcType=VARCHAR},
+      patient_birth = #{patientBirth,jdbcType=DATE},
+      province_id = #{provinceId,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      patient_time = #{patientTime,jdbcType=TIMESTAMP},
+       patient_pic = #{patientPic,jdbcType=VARCHAR},
+      standby = #{standby,jdbcType=VARCHAR}
+    where patient_id = #{patientId,jdbcType=VARCHAR}
+  </update>
+  
+    <update id="updatetou" parameterType="com.yunzhong.appointment.entity.Patient" >
+    update patient
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null" >
+        patient_name = #{patientName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTel != null" >
+        patient_tel = #{patientTel,jdbcType=VARCHAR},
+      </if>
+      <if test="patientSex != null" >
+        patient_sex = #{patientSex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientUid != null" >
+        patient_uid = #{patientUid,jdbcType=VARCHAR},
+      </if>
+      <if test="patientBirth != null" >
+        patient_birth = #{patientBirth,jdbcType=DATE},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="patientTime != null" >
+        patient_time = #{patientTime,jdbcType=TIMESTAMP},
+      </if>
+          <if test="patientPic != null" >
+           patient_pic = #{patientPic,jdbcType=VARCHAR},
+             </if>
+      <if test="standby != null" >
+        standby = #{standby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where patient_id = #{patientId,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>
